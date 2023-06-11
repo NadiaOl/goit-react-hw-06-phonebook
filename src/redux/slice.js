@@ -7,7 +7,7 @@ const initialState = {
         {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
         {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    filter: " ",
+    filter: "",
 };
 const contactSlice = createSlice({
     name: "contacts",
@@ -18,12 +18,12 @@ const contactSlice = createSlice({
                 state.contacts.push(action.payload);
             },
 
-            prepare(text) {
+            prepare({name, number}) {
                 return {
                     payload: {
                     id: nanoid(),
-                    name: text[0],
-                    number: text[1]
+                    name,
+                    number,
                     },
                 };
             },
@@ -32,24 +32,11 @@ const contactSlice = createSlice({
             const index = state.contacts.findIndex(contact => contact.id === action.payload);
             state.contacts.splice(index, 1) 
         },
-    },
-})
-
-const filterSlice = createSlice({
-    name: "filters",
-    initialState,
-    reducers: {
         setStatusFilter(state, action) {
             state.filter = action.payload
         }
-    }
+    },
 })
 
-console.log('contacts.', filterSlice)
-
-export const {addContact, deleteContact} = contactSlice.actions;
+export const {addContact, deleteContact, setStatusFilter} = contactSlice.actions;
 export const contactsReducer = contactSlice.reducer;
-
-export const {setStatusFilter} = filterSlice.actions;
-export const filtersReducer = filterSlice.reducer;
-

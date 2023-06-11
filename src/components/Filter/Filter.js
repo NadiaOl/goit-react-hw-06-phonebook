@@ -1,15 +1,12 @@
 
 import css from './Filter.module.css';
-import { useDispatch } from "react-redux";
-// import { getValueFilter } from 'redux/selectors';
+import { useDispatch, useSelector } from "react-redux";
+import { getValueFilter } from 'redux/selectors';
 import { setStatusFilter } from 'redux/slice';
 
-
 export const Filter = () => {
-    // const filter = useSelector(getValueFilter)
+    const filter = useSelector(getValueFilter)
     const dispatch = useDispatch();
-    // console.log('contacts', contacts)
-
 
 const onChangeFilter = (event) => {
     dispatch(setStatusFilter(event.target.value.toLowerCase()))
@@ -17,13 +14,12 @@ const onChangeFilter = (event) => {
 
 return (
     <label className={css.filterLable}>
-    Find contacts by name
-    <input className={css.filterInput} 
-    type="text" 
-    // value={filter} 
-    onChange={onChangeFilter}
-    >
-    </input>
+        Find contacts by name
+        <input className={css.filterInput} 
+            type="text" 
+            value={filter} 
+            onChange={onChangeFilter} >
+        </input>
     </label>
 )
 }
