@@ -7,7 +7,7 @@ const initialState = {
         {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
         {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    filter: "",
+    filter: " ",
 };
 const contactSlice = createSlice({
     name: "contacts",
@@ -40,11 +40,12 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         setStatusFilter(state, action) {
-            state.contacts.filter(contact => contact.name.toLowerCase().includes(action.payload))
+            state.filter = action.payload
         }
     }
 })
 
+console.log('contacts.', filterSlice)
 
 export const {addContact, deleteContact} = contactSlice.actions;
 export const contactsReducer = contactSlice.reducer;
