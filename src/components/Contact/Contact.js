@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 
 import css from './Contact.module.css';
-import { deleteContact } from "redux/contactSlice";
+import { deleteContact } from "redux/slice";
 
 
 export const Contact= ({contact}) =>{ 

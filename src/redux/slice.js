@@ -40,10 +40,11 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         setStatusFilter(state, action) {
-            state.status = action.payload
+            state.contacts.filter(contact => contact.name.toLowerCase().includes(action.payload))
         }
     }
 })
+
 
 export const {addContact, deleteContact} = contactSlice.actions;
 export const contactsReducer = contactSlice.reducer;
